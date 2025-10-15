@@ -1,0 +1,190 @@
+.smartcart-landing {
+  font-family: Roboto, sans-serif;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 10px 10px;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.hero-section {
+  padding: 80px 0;
+
+  .mat-display-3 {
+    font-weight: 900;
+    line-height: 1.1;
+    margin-bottom: 20px;
+    // Use a dark primary color for the main headline
+    color: var(--mat-sys-on-primary-container);
+    span {
+      color: var(--mat-sys-tertiary);
+    }
+  }
+
+  // Variables for easy color adjustments
+  $primary-color: #a00060; // Deep magenta/pink for text and icon
+  $background-color: #fffafc; // Very light pink/off-white background
+  $border-radius: 30px;
+  $shadow-color: rgba(0, 0, 0, 0.2);
+
+  .start-free-btn {
+    // 🎨 Basic Button Styling
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 25px;
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+
+    background-color: $background-color;
+    color: $primary-color;
+    border-radius: $border-radius; 
+    font-size: 1.25rem; 
+    font-weight: 600; 
+    font-family: Arial, sans-serif; 
+
+    box-shadow: 0 4px 6px $shadow-color;
+
+    transition: transform 0.1s ease, box-shadow 0.1s ease;
+
+    &:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 8px $shadow-color;
+    }
+
+    &:active {
+      transform: translateY(0);
+      box-shadow: 0 2px 4px $shadow-color;
+    }
+
+    .cart-icon {
+      margin-right: 8px;
+      font-size: 1.5rem; 
+      color: $primary-color;
+    }
+  }
+
+  .small-text {
+    font-size: 0.9rem;
+    color: var(--mat-sys-on-surface-variant);
+    margin-left: 10px;
+  }
+
+  .hero-cta-group {
+    display: flex;
+    align-items: center;
+  }
+}
+
+.features-section {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  padding: 60px 0;
+  background: #fff;
+
+  // .feature-card-grid {
+  //   display: grid;
+  //   gap: 30px;
+  //   margin-top: 40px;
+  //   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  //   max-width: 1100px;
+  //   margin-inline: auto;
+  //   justify-content: center;
+  // }
+
+  .feature-card-grid {
+    display: grid;
+    gap: 30px;
+    margin-top: 40px;
+    max-width: 1100px;
+    margin-inline: auto;
+    justify-content: center;
+
+    /* Responsive layout magic */
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  }
+
+  .feature-card {
+    max-width: none; /* 🚫 remove any hard cap */
+    background: #fff6f6;
+    border-radius: 16px;
+    padding: 24px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    transition: all 0.25s ease;
+    cursor: pointer;
+
+    &:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
+    }
+  }
+
+  .feature-card-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 12px;
+  }
+
+  .feature-icon {
+    font-size: 1.5rem;
+  }
+
+  .feature-title {
+    font-weight: 600;
+    font-size: 1.25rem;
+  }
+
+  .feature-description {
+    color: #444;
+    line-height: 1.5;
+    font-size: 0.95rem;
+  }
+}
+
+// 📢 Testimonial Styling
+.testimonial-section {
+  padding: 50px 0;
+  // Use a slight variation of the background surface for the testimonial section
+  background-color: var(--mat-sys-surface-container-low);
+
+  blockquote {
+    font-style: italic;
+    max-width: 800px;
+    margin: 20px auto;
+  }
+}
+
+// 🚀 Final CTA Styling
+.final-cta-section {
+  padding: 60px 0;
+
+  .mat-headline-4 {
+    margin-bottom: 30px;
+  }
+}
+
+// 🦶 Footer Styling
+footer {
+  padding: 20px 0;
+  background-color: var(--mat-sys-surface-container-low);
+  border-top: 1px solid var(--mat-sys-outline-variant);
+
+  p {
+    color: var(--mat-sys-on-surface-variant);
+    font-size: 0.85rem;
+    text-align: center;
+  }
+}
+
+@media (max-width: 991px) {
+  .container {
+    padding: 10px 10px;
+  }
+}

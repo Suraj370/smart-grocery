@@ -1,0 +1,57 @@
+<div class="grocery-list-container">
+  <div class="header-bar">
+    <div class="user-greeting">
+      Hi, <strong>{{ auth.user()?.user?.displayName || 'User' }}</strong>
+    </div>
+
+    <a routerLink="/grocery/create" class="create-button">
+      <mat-icon>add</mat-icon> Create New List
+    </a>
+  </div>
+
+  <hr class="separator" />
+
+  @if(loading()){
+  <div class="list-wrapper">
+    @for (item of skeletonItems; track $index) {
+    <div class="list-card skeleton-card">
+      <div class="list-header">
+        <div class="skeleton-line wide-line"></div>
+        <div class="skeleton-line circle-line"></div>
+      </div>
+      <div class="list-details">
+        <div class="skeleton-line medium-line"></div>
+        <div class="skeleton-line long-line"></div>
+      </div>
+      <div class="skeleton-button"></div>
+    </div>
+    }
+  </div>
+  } @else if (error()) {
+  <p class="error-message">{{ error() }}</p>
+  } @else if ((grocery.groceryList()?.length ?? 0) === 0) {
+  <div class="empty-state">
+    <p>No grocery lists found. Click "Create New List" to start!</p>
+  </div>
+  } @else {
+  <div class="list-wrapper">
+    @for (list of grocery.groceryList(); track list.id) {
+    <div class="list-card">
+      <div>
+        <div class="list-header">
+          <h2 class="list-name">{{ list.name || 'Untitled List' }}</h2>
+        </div>
+        <div class="list-details">
+          <p class="list-date">
+            Created on:
+            <strong>{{ list.createdAt | date : 'mediumDate' }}</strong>
+          </p>
+        </div>
+      </div>
+
+      <button mat-flat-button color="primary" (click)="loadListDetail(list.id)">View List</button>
+    </div>
+    }
+  </div>
+  }
+</div>

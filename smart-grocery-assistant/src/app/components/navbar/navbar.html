@@ -1,0 +1,14 @@
+<header class="">
+  <div class="container header-content">
+    <div class="logo">SmartCart AI</div>
+    <nav>
+      @if (auth.user()) {
+        Hi, {{ auth.user()?.user?.displayName }}
+        <button mat-flat-button color="primary"  class="start-button" (click)="logout()"> Log out </button>
+      }
+      @else {
+        <a mat-flat-button color="primary" routerLink="/auth/login" class="start-button"> Sign in </a>
+      }
+    </nav>
+  </div>
+</header>

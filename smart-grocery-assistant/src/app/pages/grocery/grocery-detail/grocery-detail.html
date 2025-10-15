@@ -1,0 +1,146 @@
+<div class="create-list-wrapper">
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title class="page-title-header">Edit Grocery List</mat-card-title>
+    </mat-card-header>
+
+    <mat-card-content>
+      <!-- Error -->
+      @if (error()) {
+      <p class="mat-error error-message">{{ error() }}</p>
+      }
+
+      <!-- List Name -->
+      <mat-form-field appearance="outline" class="list-name-field">
+        <mat-label>List Name</mat-label>
+        <input matInput [(ngModel)]="listName" />
+      </mat-form-field>
+
+      <!-- Quick Add New Item -->
+      <h3 class="section-title">Quick Add Items</h3>
+      <div class="quick-add-form">
+        <mat-form-field appearance="fill" class="item-input name-input">
+          <mat-label>Item Name (Required)</mat-label>
+          <input
+            matInput
+            type="text"
+            [(ngModel)]="newItem.name"
+            placeholder="Milk, Eggs, etc."
+            [ngModelOptions]="{ standalone: true }"
+          />
+        </mat-form-field>
+
+        <mat-form-field appearance="fill" class="item-input quantity-input">
+          <mat-label>Qty</mat-label>
+          <input
+            matInput
+            type="number"
+            [(ngModel)]="newItem.quantity"
+            placeholder="2"
+            [ngModelOptions]="{ standalone: true }"
+          />
+        </mat-form-field>
+
+        <button
+          mat-flat-button
+          color="primary"
+          type="button"
+          (click)="addItem()"
+          [disabled]="!newItem.name?.trim()"
+        >
+          <mat-icon>add</mat-icon> Add
+        </button>
+      </div>
+
+      <mat-divider></mat-divider>
+
+      <!-- Items List -->
+      <h3 class="section-title list-preview-title">Items ({{ list()?.items?.length ?? 0 }})</h3>
+
+      @if ((list()?.items ?? []).length > 0) {
+      <div class="items-preview-list">
+        @for ( item of items(); track item.id) {
+        <div class="item-display">
+          <span class="item-name">
+            <input
+              [(ngModel)]="item.name"
+              (blur)="onItemNameChange(item)"
+              placeholder="Item Name"
+              [ngModelOptions]="{ standalone: true }"
+            />
+            @if (item.quantity && item.unit) { (
+            <input
+              type="number"
+              [(ngModel)]="item.quantity"
+              min="1"
+              placeholder="Qty"
+              class="quantity-input"
+              [ngModelOptions]="{ standalone: true }"
+            />
+
+            {{ item.unit }}) }
+          </span>
+
+          <mat-checkbox
+            [(ngModel)]="item.purchased"
+            [ngModelOptions]="{ standalone: true }"
+          ></mat-checkbox>
+
+          <button mat-icon-button color="warn" (click)="removeItem(item.id!)">
+            <mat-icon>close</mat-icon>
+          </button>
+        </div>
+        }
+      </div>
+      } @else {
+      <p class="no-items-message">No items yet. Add items above.</p>
+      }
+    </mat-card-content>
+
+    <mat-card-actions align="end">
+      <button mat-flat-button color="accent" [disabled]="saving()" (click)="saveChanges()">
+        @if (saving()) {
+        <mat-spinner diameter="20" class="loading-spinner"></mat-spinner>
+        } @else { Save Changes }
+      </button>
+    </mat-card-actions>
+  </mat-card>
+
+  <div class="ai-suggestion">
+    <button mat-flat-button color="primary" (click)="fetchSuggestions()">Get AI Suggestions</button>
+
+    <!-- AI Suggestions Section -->
+    @if(suggestions.length > 0){
+    <div class="ai-suggestions-section">
+      <h3 class="section-title">AI Suggestions</h3>
+
+      <div class="suggestions-grid">
+        <mat-card *ngFor="let suggestion of suggestions" class="suggestion-card">
+          <mat-card-header>
+            <mat-card-title>{{ suggestion.name }}</mat-card-title>
+            <mat-card-subtitle>{{ suggestion.category | titlecase }}</mat-card-subtitle>
+          </mat-card-header>
+
+          <mat-card-content>
+            <p class="reason">{{ suggestion.reason }}</p>
+            <div class="meta">
+              <span class="priority" [ngClass]="suggestion.priority">
+                Priority: {{ suggestion.priority | titlecase }}
+              </span>
+              <span *ngIf="suggestion.quantity">
+                Qty: {{ suggestion.quantity }} {{ suggestion.unit || '' }}
+              </span>
+            </div>
+          </mat-card-content>
+
+          <mat-card-actions align="end">
+            <!-- <button mat-flat-button color="primary" (click)="addSuggestedItem(suggestion)">
+          Add to List
+        </button> -->
+          </mat-card-actions>
+        </mat-card>
+      </div>
+    </div>
+    }
+  </div>
+</div>

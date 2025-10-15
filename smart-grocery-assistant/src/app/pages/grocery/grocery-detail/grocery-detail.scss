@@ -1,0 +1,162 @@
+.create-list-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding: 32px;
+  gap: 16px;
+}
+
+mat-card {
+  max-width: 800px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.page-title-header {
+  font-size: 1.5rem;
+  font-weight: 500;
+}
+
+.list-name-field {
+  width: 100%;
+  margin-bottom: 24px;
+}
+
+.section-title {
+  font-weight: 500;
+  margin-top: 24px;
+  margin-bottom: 16px;
+  color: var(--mat-primary-text-color);
+}
+
+.error-message {
+  padding: 10px;
+  background-color: #fce8e6; // Light red background for errors
+  border: 1px solid #f44336;
+  border-radius: 4px;
+  margin-bottom: 16px;
+}
+
+/* --- Item Quick-Add Form --- */
+
+.quick-add-form {
+  display: flex;
+  gap: 12px;
+  align-items: flex-end; /* Aligns button with the bottom of inputs */
+  margin-bottom: 24px;
+}
+
+.item-input {
+  // Distribute space for name and allocate less for quantity/unit
+  &.name-input {
+    flex: 3;
+  }
+  &.quantity-input {
+    flex: 1;
+    max-width: 100px;
+  }
+  &.unit-input {
+    flex: 1;
+    max-width: 150px;
+  }
+}
+
+.quick-add-form button {
+  height: 56px; /* Match the height of Material filled inputs */
+  min-width: 80px;
+}
+
+/* --- Items Preview List --- */
+
+.list-preview-title {
+  margin-top: 32px;
+  margin-bottom: 12px;
+}
+
+.items-preview-list {
+  border: 1px solid var(--mat-divider-color);
+  border-radius: 4px;
+}
+
+.item-display {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 16px;
+  border-bottom: 1px solid var(--mat-divider-color);
+
+  &:last-child {
+    border-bottom: none;
+  }
+}
+
+.item-name {
+  font-size: 1rem;
+}
+
+.no-items-message {
+  text-align: center;
+  padding: 20px;
+  color: var(--mat-secondary-text-color);
+}
+
+.loading-spinner {
+  margin-right: 8px;
+}
+
+.ai-suggestion{
+    display: flex;
+    flex-direction: column;
+
+}
+
+.ai-suggestions-section {
+  margin-top: 24px;
+
+  .suggestions-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 16px;
+    margin-top: 12px;
+  }
+
+  .suggestion-card {
+    border-radius: 16px;
+    box-shadow: var(--mat-elevation-z3);
+    transition: all 0.25s ease;
+
+    &:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--mat-elevation-z6);
+    }
+
+    .reason {
+      font-size: 0.9rem;
+      color: rgba(0, 0, 0, 0.7);
+      margin-bottom: 8px;
+    }
+
+    .meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.85rem;
+      margin-top: 4px;
+
+      .priority {
+        font-weight: 600;
+
+        &.low {
+          color: #4caf50;
+        }
+        &.medium {
+          color: #ff9800;
+        }
+        &.high {
+          color: #f44336;
+        }
+      }
+    }
+  }
+}

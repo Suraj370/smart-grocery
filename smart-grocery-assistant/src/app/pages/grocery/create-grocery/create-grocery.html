@@ -1,0 +1,89 @@
+<div class="create-list-wrapper">
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title class="page-title-header"> Add Items to New Grocery List </mat-card-title>
+    </mat-card-header>
+
+    <mat-card-content>
+      @if (error()) {
+      <p class="mat-error error-message">{{ error() }}</p>
+      }
+
+      <h3 class="section-title">Quick Add Items</h3>
+      <mat-form-field appearance="outline">
+        <mat-label>List Name</mat-label>
+        <input matInput [(ngModel)]="listName" />
+      </mat-form-field>
+      <div class="quick-add-form">
+        <mat-form-field appearance="fill" class="item-input name-input">
+          <mat-label>Item Name (Required)</mat-label>
+          <input
+            matInput
+            type="text"
+            [(ngModel)]="newItem.name"
+            placeholder="Milk, Eggs, etc."
+            [ngModelOptions]="{ standalone: true }"
+          />
+        </mat-form-field>
+
+        <mat-form-field appearance="fill" class="item-input quantity-input">
+          <mat-label>Qty</mat-label>
+          <input
+            matInput
+            type="number"
+            [(ngModel)]="newItem.quantity"
+            placeholder="2"
+            [ngModelOptions]="{ standalone: true }"
+          />
+        </mat-form-field>
+
+        <button
+          mat-flat-button
+          color="primary"
+          type="button"
+          (click)="addGroceryItem()"
+          [disabled]="!newItem.name.trim()"
+        >
+          <mat-icon>add</mat-icon> Add
+        </button>
+      </div>
+
+      <mat-divider></mat-divider>
+
+      <h3 class="section-title list-preview-title">
+        Items to Save ({{ localItems().length || 0 }})
+      </h3>
+
+      @if (localItems() && localItems().length > 0) {
+      <div class="items-preview-list">
+        @for (item of localItems(); track item.id) {
+        <div class="item-display">
+          <span class="item-name">
+            {{ item.name }}
+            @if (item.quantity && item.unit) { ({{ item.quantity }} {{ item.unit }}) }
+          </span>
+          <button mat-icon-button color="warn" (click)="removeItem(item.id ?? '')">
+            <mat-icon>close</mat-icon>
+          </button>
+        </div>
+        }
+      </div>
+      } @else {
+      <p class="no-items-message">Start by adding items above.</p>
+      }
+    </mat-card-content>
+
+    <mat-card-actions align="end">
+      <button
+        mat-flat-button
+        color="accent"
+        [disabled]="saving() || !localItems() || localItems().length === 0"
+        (click)="saveList()"
+      >
+        @if (saving()) {
+        <mat-spinner diameter="20" class="loading-spinner"></mat-spinner>
+        } @else { Save List }
+      </button>
+    </mat-card-actions>
+  </mat-card>
+</div>

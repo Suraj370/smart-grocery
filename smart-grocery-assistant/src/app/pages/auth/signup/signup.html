@@ -1,0 +1,101 @@
+<section class="auth-wrapper">
+  <div class="auth-card">
+    <h2 class="auth-title"><span>Signup</span> to Smart Cart AI</h2>
+    <p class="auth-subtitle">Your secure portal for managing grocery lists.</p>
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+      <div class="form-group name-group">
+        <label for="displayName" class="input-label">Name</label>
+
+        <div class="name-wrapper">
+          <input formControlName="displayName" type="text" id="displayName" class="input-field" />
+        </div>
+
+        @if (getErrorMessage('displayName')) {
+        <p class="validation-error">{{ getErrorMessage('displayName') }}</p>
+        }
+      </div>
+      <div class="form-group email-group">
+        <label for="email" class="input-label">Email</label>
+
+        <div class="email-wrapper">
+          <input formControlName="email" type="email" id="email" class="input-field" />
+        </div>
+
+        @if (getErrorMessage('email')) {
+        <p class="validation-error">{{ getErrorMessage('email') }}</p>
+        }
+      </div>
+      <div class="form-group password-group">
+        <label for="password" class="input-label">Password</label>
+
+        <div class="password-wrapper">
+          <input
+            formControlName="password"
+            [type]="isPasswordVisible() ? 'text' : 'password'"
+            id="password"
+            class="input-field"
+          />
+
+          <button
+            type="button"
+            class="toggle-visibility-btn"
+            (click)="togglePasswordVisibility()"
+            aria-label="Toggle password visibility"
+          >
+            <mat-icon>{{ isPasswordVisible() ? 'visibility_off' : 'visibility' }}</mat-icon>
+          </button>
+        </div>
+
+        @if (getErrorMessage('password')) {
+        <p class="validation-error">{{ getErrorMessage('password') }}</p>
+        }
+      </div>
+      <div class="form-group password-group">
+        <label for="confirmPassword" class="input-label">Confirm Password</label>
+
+        <div class="password-wrapper">
+          <input
+            formControlName="confirmPassword"
+            [type]="isPasswordVisible() ? 'text' : 'password'"
+            id="confirmPassword"
+            class="input-field"
+          />
+
+          <button
+            type="button"
+            class="toggle-visibility-btn"
+            (click)="togglePasswordVisibility()"
+            aria-label="Toggle password visibility"
+          >
+            <mat-icon>{{ isPasswordVisible() ? 'visibility_off' : 'visibility' }}</mat-icon>
+          </button>
+        </div>
+
+        @if (getErrorMessage('confirmPassword')) {
+        <p class="validation-error">{{ getErrorMessage('confirmPassword') }}</p>
+        }
+      </div>
+
+      <!-- Message Display (Error or Success) -->
+      @if (error()) {
+      <div class="message-box"  [class.error]="error()">
+        {{ error() }}
+      </div>
+      }
+
+      <button
+        mat-raised-button
+        color="tertiary"
+        type="submit"
+        [disabled]="!form.valid || submitting()"
+        class="auth-button"
+      >
+        @if (submitting()) {
+           <mat-progress-spinner mode="indeterminate" diameter="24"></mat-progress-spinner>
+        Signing up... } @else { Sign Up }
+      </button>
+    </form>
+
+    Already have an account? <a routerLink="/auth/login" class="switch-link">Log In</a>
+  </div>
+</section>

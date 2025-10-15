@@ -1,0 +1,34 @@
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 10px 10px;
+}
+
+header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background-color: white; // Keeping white for clarity
+  padding: 10px 0;
+  border-bottom: 1px solid var(--mat-sys-outline-variant); // Added a subtle border
+
+  .header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .logo {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--mat-sys-primary);
+  }
+
+  nav {
+    display: flex;
+    align-items: center;
+    gap: 8px; /* Space between buttons */
+
+  
+  }
+}

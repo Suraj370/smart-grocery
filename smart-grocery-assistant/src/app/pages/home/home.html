@@ -1,0 +1,90 @@
+<main class="smartcart-landing">
+  <section class="hero-section">
+    <div class="container hero-grid">
+      <div class="hero-text">
+        <h1 class="mat-display-3">
+          Stop Shopping. <br />
+          Start <span>**Living.**</span>
+        </h1>
+        <p class="mat-subheading-2">
+          SmartCart uses AI to predict your needs, optimize your list, and reduce food waste. Your
+          intelligent pantry starts here.
+        </p>
+        <div class="hero-cta-group">
+          @if(authService.isAuthenticated()) {
+            <a routerLink="/grocery" class="start-free-btn">
+            <mat-icon>shopping_cart</mat-icon>
+            Start for Free
+          </a>
+          } @else {
+          <a routerLink="/auth/login" class="start-free-btn">
+            <mat-icon>shopping_cart</mat-icon>
+            Start for Free
+          </a>
+          }
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="features-section mat-typography">
+    <div class="container">
+      <h2 class="mat-headline-4 text-center">The Future of Groceries, Powered by AI</h2>
+
+      <div class="feature-card-grid">
+        <mat-card class="feature-card mat-elevation-z4">
+          <mat-card-header>
+            <mat-icon mat-card-avatar color="primary">auto_fix_high</mat-icon>
+            <mat-card-title>AI-Optimized List Suggestions</mat-card-title>
+          </mat-card-header>
+          <mat-card-content>
+            <ul>
+              <li>
+                Analyzes your buying patterns and current stock to predict what you’ll need next.
+              </li>
+              <li>Flags duplicate or unnecessary items before checkout.</li>
+              <li>Turns your grocery planning from reactive to proactive.</li>
+            </ul>
+          </mat-card-content>
+        </mat-card>
+
+        <mat-card class="feature-card mat-elevation-z4">
+          <mat-card-header>
+            <mat-icon mat-card-avatar color="accent">inventory_2</mat-icon>
+            <mat-card-title>Real-Time Pantry Check</mat-card-title>
+          </mat-card-header>
+          <mat-card-content>
+            <ul>
+              <li>Syncs with your inventory to track what’s already at home.</li>
+              <li>Prevents overbuying and reduces waste effortlessly.</li>
+              <li>Smart reminders help you use items before they expire.</li>
+            </ul>
+          </mat-card-content>
+        </mat-card>
+      </div>
+    </div>
+  </section>
+
+  <section class="testimonial-section">
+    <div class="container">
+      <blockquote class="mat-headline-5 text-center">
+        “I save 3 hours a week and my food waste is practically zero. SmartCart is a game-changer
+        for busy parents.”
+      </blockquote>
+      <p class="text-center">- Sarah K., Working Mom & Early Adopter</p>
+    </div>
+  </section>
+
+  <section class="final-cta-section">
+    <div class="container text-center">
+      <h3 class="mat-headline-4">Ready to Grocery Shop Smarter?</h3>
+      <button mat-raised-button color="accent" class="large-cta">Download the App Now</button>
+    </div>
+  </section>
+
+  <footer class="mat-typography">
+    <div class="container">
+      <p>&copy; 2025 SmartCart AI. | Privacy | Terms</p>
+    </div>
+  </footer>
+</main>

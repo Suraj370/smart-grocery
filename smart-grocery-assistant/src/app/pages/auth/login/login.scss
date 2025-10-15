@@ -1,0 +1,315 @@
+/* ===================== 🌈 COLOR SYSTEM ===================== */
+$indigo-400: #818cf8;
+$indigo-500: #6366f1;
+$indigo-600: #4f46e5;
+$indigo-700: #4338ca;
+$indigo-800: #3730a3;
+
+$gray-50: #f9fafb;
+$gray-100: #f3f4f6;
+$gray-200: #e5e7eb;
+$gray-300: #d1d5db;
+$gray-400: #9ca3af;
+$gray-500: #6b7280;
+$gray-600: #4b5563;
+$gray-700: #374151;
+$gray-800: #1f2937;
+
+$red-100: #fee2e2;
+$red-200: #fecaca;
+$red-700: #b91c1c;
+
+$green-100: #dcfce7;
+$green-200: #bbf7d0;
+$green-700: #15803d;
+
+/* ===================== 🧱 BASE LAYOUT ===================== */
+:host ::ng-deep .auth-button.mat-mdc-raised-button {
+  width: 100%;
+  border-radius: 0.75rem;
+  font-weight: 600;
+  font-size: 1rem;
+  transition: background-color 0.2s, transform 0.15s;
+
+  // Use Material tokens for consistent theme adaptation
+  background-color: var(--mat-sys-primary);
+  color: var(--mat-sys-on-primary);
+
+  &:hover {
+    background-color: var(--mat-sys-primary-container);
+  }
+
+  &:active {
+    transform: scale(0.98);
+  }
+
+  &:focus-visible {
+    box-shadow: 0 0 0 4px rgba(var(--mat-sys-primary-rgb), 0.4);
+    outline: none;
+  }
+
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    box-shadow: none;
+  }
+
+  .loading-spinner {
+    width: 1.2rem;
+    height: 1.2rem;
+    margin-right: 0.5rem;
+    animation: spin 1s linear infinite;
+  }
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+/* ===================== 🪞 AUTH WRAPPER ===================== */
+.auth-wrapper {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+}
+
+/* ===================== 💳 AUTH CARD ===================== */
+.auth-card {
+  width: 100%;
+  max-width: 28rem;
+  background-color: white;
+  border-radius: 1.25rem;
+  padding: 2rem;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+  transition: transform 0.25s ease, box-shadow 0.25s ease, opacity 0.3s ease; // Added opacity for fade
+
+  &:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+  }
+
+  @media (min-width: 640px) {
+    padding: 2.5rem;
+  }
+}
+
+/* ===================== 🧠 HEADERS ===================== */
+.auth-title {
+  font-size: 2rem;
+  font-weight: 800;
+  text-align: center;
+  color: var(--mat-sys-on-surface);
+  margin-bottom: 0.5rem;
+  transition: color 0.2s ease; // Smooth color transition
+  span {
+    color: var(--mat-sys-primary);
+  }
+}
+
+.auth-subtitle {
+  text-align: center;
+  font-size: 0.9rem;
+  color: $gray-500;
+  margin-bottom: 2rem;
+}
+
+/* ===================== 📋 FORM ===================== */
+.auth-form {
+  & > * + * {
+    margin-top: 1.25rem;
+  }
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 0.25rem;
+  transition: all 0.2s ease; // Smooth field animations
+}
+
+.input-label {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: $gray-700;
+  margin-bottom: 0.25rem;
+}
+
+.email-group {
+  position: relative;
+  margin-bottom: 1.2rem;
+
+  .email-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+
+    .input-field {
+      width: 100%;
+      padding-right: 2.5rem; // space for the eye icon
+      padding-left: 0.75rem;
+      height: 2rem;
+      border: 1px solid #ccc;
+      border-radius: 0.5rem;
+      font-size: 1rem;
+      transition: border-color 0.2s ease;
+
+      &:focus {
+        border-color: $indigo-500;
+        box-shadow: 0 0 0 3px rgba($indigo-500, 0.3);
+        outline: none;
+      }
+    }
+  }
+}
+
+/* ===================== 🔒 PASSWORD GROUP ===================== */
+.password-group {
+  position: relative;
+  margin-bottom: 1.2rem;
+
+  .password-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+
+    .input-field {
+      width: 100%;
+      padding-right: 2.5rem; // space for the eye icon
+      padding-left: 0.75rem;
+      height: 2rem;
+      border: 1px solid #ccc;
+      border-radius: 0.5rem;
+      font-size: 1rem;
+      transition: border-color 0.2s ease;
+
+      &:focus {
+        border-color: $indigo-500;
+        box-shadow: 0 0 0 3px rgba($indigo-500, 0.3);
+        outline: none;
+      }
+    }
+
+    .toggle-visibility-btn {
+      position: absolute;
+      right: 0.75rem;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0;
+      color: #888;
+      transition: color 0.2s ease;
+
+      &:hover {
+        color: #333;
+      }
+
+      .icon {
+        font-size: 1.2rem;
+      }
+    }
+  }
+}
+
+/* ===================== ❌ VALIDATION ERROR ===================== */
+.validation-error {
+  font-size: 0.75rem;
+  color: $red-700;
+  margin-top: 0.25rem;
+  animation: fadeIn 0.3s ease; // Fade in for UX
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* ===================== 💬 MESSAGE BOX ===================== */
+.message-box {
+  padding: 0.75rem;
+  margin-bottom: 1.5rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  border-radius: 0.5rem;
+  border: 1px solid;
+  word-break: break-word;
+  animation: slideIn 0.3s ease; // Slide in for better UX
+
+  &.error {
+    color: $red-700;
+    background-color: $red-100;
+    border-color: $red-200;
+  }
+
+  &.success {
+    color: $green-700;
+    background-color: $green-100;
+    border-color: $green-200;
+  }
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateY(-10px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* ===================== 🔄 LOADER ===================== */
+.loading-spinner {
+  animation: spin 1s linear infinite;
+  margin-right: 0.75rem;
+  height: 1.25rem;
+  width: 1.25rem;
+  color: white;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ===================== 🔑 FORGOT PASSWORD ===================== */
+.forgot-password {
+  text-align: right;
+  font-size: 0.875rem;
+  margin-top: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.switch-link {
+  all: unset; // nukes all default styles, including color & underline
+  cursor: pointer;
+  color: var(--mat-sys-on-surface);
+  font-weight: 500;
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--mat-sys-primary);
+    outline-offset: 2px;
+  }
+}
